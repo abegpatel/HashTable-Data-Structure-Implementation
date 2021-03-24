@@ -1,0 +1,37 @@
+import random
+import string
+from time import time
+import matplotlib.pyplot as plt
+
+def randomString(stringLength=10):
+    """Generate a random string of fixed length """
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
+
+def test(L):
+    #L: int length of keys
+
+    N = 1000 # number of keys
+    d = dict()
+    for i in range(N):
+        d[randomString(L)] = None
+
+    tic = time()
+    for key in d.keys():
+        d[key]
+    toc = time() - tic
+
+    tic = time()
+    for key in d.keys():
+        pass
+    t_idle = time() - tic
+
+    t_total = toc - t_idle
+    return t_total
+
+L = [i * 10000 for i in range(5, 15)]
+ans = [test(l) for l in L]
+
+plt.figure()
+plt.plot(L, ans)
+plt.show()
